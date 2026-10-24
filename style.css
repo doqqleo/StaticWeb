@@ -1,0 +1,328 @@
+/*
+  ============================================================
+  CÓMO LEER ESTE CSS (para entender qué hace cada cosa)
+  ============================================================
+  El CSS son reglas con esta forma:   selector { propiedad: valor; }
+    - "selector" dice A QUÉ elemento se aplica la regla.
+    - Lo que va entre llaves dice CÓMO se ve.
+
+  Tipos de selector que verás:
+    h1, p, a        -> aplica a todas las etiquetas de ese tipo.
+    .hero           -> el punto significa CLASE. Se aplica a los elementos
+                       que tienen class="hero" en el HTML. Las clases las
+                       nombro yo; "hero" es solo un nombre que elegí.
+    #contacto       -> la almohadilla significa ID: un elemento único.
+    .a .b           -> un ".b" que está DENTRO de un ".a".
+    :hover, :focus  -> cuando el ratón pasa por encima, o está seleccionado.
+
+  --nombre: valor   -> es una VARIABLE. Aquí guardo los colores y fuentes.
+                       Se usan con var(--nombre). Cambias el valor una vez
+                       y cambia en toda la web (así funciona el selector
+                       de colores de abajo).
+
+  @media (max-width: 900px) { ... }
+                    -> reglas que SOLO se aplican si la pantalla mide menos
+                       de 900 píxeles de ancho (tablet y móvil). Es lo que
+                       hace que la web se reorganice en pantallas pequeñas.
+  ============================================================
+*/
+
+
+/* jetbrains-mono-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/jetbrains-mono-v24-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* jetbrains-mono-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  src: url('fonts/jetbrains-mono-v24-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* plus-jakarta-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/plus-jakarta-sans-v12-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* plus-jakarta-sans-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('fonts/plus-jakarta-sans-v12-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* plus-jakarta-sans-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/plus-jakarta-sans-v12-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* plus-jakarta-sans-800 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('fonts/plus-jakarta-sans-v12-latin-800.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* dm-sans-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/dm-sans-v17-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* dm-sans-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('fonts/dm-sans-v17-latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* dm-sans-600 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('fonts/dm-sans-v17-latin-600.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* CONCEPTO DE DISEÑO: estudio pequeño y cercano. Titulares grandes alineados a la izquierda, filas con líneas en lugar de muchas tarjetas, y el isotipo como pieza gráfica del hero. */
+
+/* --- 1. VARIABLES: colores y fuentes de toda la web (modo oscuro por defecto) --- */
+:root {
+  --bg: #F5F5F0;
+  --surface: #FFFFFF;
+  --text: #2F4A50;
+  --muted: #5E7378;
+  --line: rgba(47,74,80,.15);
+  --brand: #F59E0B;
+  --accent: #0F4C5C;
+  --on-brand: #1F3438;
+  --on-accent: #FFFFFF;
+  --display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --body: var(--display);
+  --mono: var(--display);
+  color-scheme: light;
+}
+/* :root {
+  --bg: #F5F8F8;
+  --surface: #FFFFFF;
+  --text: #1F3A40;
+  --muted: #5B7379;
+  --line: rgba(31,58,64,.15);
+  --brand: #14B8A6;
+  --accent: #0F4C5C;
+  --on-brand: #0F2A3D;
+  --on-accent: #FFFFFF;
+  --display: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: light;
+} */
+/* Si el visitante tiene el móvil/ordenador en modo claro, usamos estos valores */
+/* @media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { --bg: #F6F7FB; --surface: #FFFFFF; --text: #0B1020; --muted: #565B72; --line: rgba(11,16,32,.12); --brand: #5B3BF0; --accent: #10B98F; --on-brand: #FFFFFF; --on-accent: #0B1020; color-scheme: light; }
+}
+:root[data-theme="light"] { --bg: #F6F7FB; --surface: #FFFFFF; --text: #0B1020; --muted: #565B72; --line: rgba(11,16,32,.12); --brand: #5B3BF0; --accent: #10B98F; --on-brand: #FFFFFF; --on-accent: #0B1020; color-scheme: light; } */
+
+/* --- 2. BASE: reglas generales para toda la página --- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; background: var(--bg); scrollbar-color: var(--brand) transparent;}
+body { margin: 0; background: transparent; color: var(--text); font: 400 17px/1.6 var(--body); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 110px; }
+body { position: relative; }
+.bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.bg svg { position: absolute; top: -80px; left: -80px; width: calc(100% + 160px); height: calc(100% + 160px); filter: blur(50px); }
+.wrap { max-width: 1120px; margin-inline: auto; }   /* contenedor centrado de ancho máximo */
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); letter-spacing: -.02em; line-height: 1.08; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.eyebrow { font: 500 12.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }  /* etiqueta pequeña sobre los titulares */
+
+/* --- 3. CABECERA (logo y menú) --- */
+header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 26px; flex-wrap: wrap; }
+.logo { display: block; height: 34px; aspect-ratio: 3.710; }
+nav { display: flex; align-items: center; gap: 26px; font-size: 15px; font-weight: 500; }
+nav a.link { text-decoration: none; color: var(--muted); }
+nav a.link:hover { color: var(--text); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 700 15.5px/1 var(--display); padding: 15px 24px; border-radius: 999px; background: var(--brand); color: var(--on-brand); text-decoration: none; border: 0; cursor: pointer; transition: transform .15s, background-color .25s; }  /* botón principal */
+.btn:hover { transform: translateY(-2px); }
+.btn.ghost { background: transparent; color: var(--text); box-shadow: inset 0 0 0 1.5px var(--line); }  /* botón secundario, solo con borde */
+.btn.sm { padding: 12px 20px; font-size: 14.5px; }  /* botón pequeño */
+
+/* --- 4. HERO (la parte de arriba: titular, botones y dibujo) --- */
+.hero { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 56px; align-items: center; padding-block: 70px 90px; }
+.hero { position: relative; }
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 520px;
+  aspect-ratio: 1;
+  left: -120px;
+  top: -80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  opacity: .35;
+  filter: blur(70px);
+}
+.hero > div:first-child { text-align: center; }.hero h1 { font-size: clamp(38px, 6vw, 68px); font-weight: 800; margin-block: 22px 26px; }  /* clamp = tamaño que crece con la pantalla entre un mínimo y un máximo */
+mark { background: linear-gradient(90deg, var(--accent), #B45309); -webkit-background-clip: text; background-clip: text; color: transparent; }.founder { display: flex; align-items: center; gap: 16px; margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--line); max-width: 34em; }
+.hero-note { font-size: 15px; color: var(--muted); margin-top: 16px; }
+.avatar { width: 60px; height: 60px; border-radius: 50%; flex: none; border: 1.5px dashed var(--muted); display: grid; place-items: center; font: 500 10px/1.2 var(--mono); color: var(--muted); text-align: center; }  /* hueco para tu foto */
+.founder strong { display: block; font: 700 17px/1.3 var(--display); }
+.founder span { color: var(--muted); font-size: 15px; }
+.hero-art { display: grid; place-items: center; min-width: 0; }
+.hero-art svg { width: 70%; max-width: 320px; height: auto; aspect-ratio: 547 / 706; }
+.chip { position: absolute; font: 500 12px/1 var(--mono); letter-spacing: .06em; padding: 9px 13px; border-radius: 999px; background: var(--bg); color: var(--text); box-shadow: inset 0 0 0 1px var(--line); }
+.chip.a { left: 18px; bottom: 18px; } .chip.b { right: 18px; top: 18px; }
+.chip i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 8px; }
+.hero .btn { margin-top: 18px; margin-bottom: 12px; }
+
+/* --- 5. SECCIONES: estructura común (cabecera de sección y filas) --- */
+section { padding-block: 84px; border-top: 1px solid var(--line); }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 48px; align-items: start; }  /* titular a la izquierda, texto a la derecha */
+.sec-head h2 { font-size: clamp(30px, 4vw, 44px); font-weight: 800; margin-top: 16px; }
+.sec-head p { color: var(--muted); font-size: 19px; max-width: 36em; padding-top: 34px; }
+.rows { margin-top: 52px; border-top: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 48px; padding-block: 34px; border-bottom: 1px solid var(--line); }
+.row h3 { font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 14px; }
+.row h3::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--brand); flex: none; }  /* el punto de color antes de cada título */
+.row p { color: var(--muted); max-width: 38em; }
+
+/* "Por qué código propio": 4 puntos en columnas */
+.points { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin: 52px 0 0; padding: 0; list-style: none; }
+.points li { padding-top: 22px; border-top: 3px solid var(--line); position: relative; }
+.points li::before { content: ""; position: absolute; top: -3px; left: 0; width: 44px; height: 3px; background: var(--brand); }  /* la barrita de color encima de cada punto */
+.points h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+.points p { color: var(--muted); font-size: 16px; }
+
+/* Ejemplo: el flujo Idealista -> WhatsApp */
+.flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 44px; margin: 52px 0 0; padding: 0; list-style: none; }
+.flow li { position: relative; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); border-radius: 20px; padding: 24px; }
+.flow li:not(:last-child)::after { content: "\2192"; position: absolute; right: -32px; top: 50%; transform: translateY(-50%); font: 500 22px/1 var(--mono); color: var(--accent); }  /* la flecha entre pasos */
+.flow .tag { display: inline-block; font: 500 11.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.flow strong { display: block; font: 700 18px/1.3 var(--display); margin-bottom: 8px; }
+.flow p { color: var(--muted); font-size: 15.5px; }
+.stack { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 34px; }
+.stack .lbl { font: 500 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-right: 6px; }
+.stack .t { font: 500 13px/1 var(--mono); padding: 9px 13px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); }
+.example-note { color: var(--muted); font-size: 18px; max-width: 44em; margin-top: 26px; }
+
+/* Producto cerrado / producto abierto */
+.ways { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 52px; }
+.way { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.way h3 { font-size: 26px; font-weight: 800; }
+.way > p { color: var(--muted); }
+.way ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.way li { display: grid; grid-template-columns: 10px minmax(0, 1fr); gap: 14px; align-items: start; font-size: 16px; }
+.way li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 9px; }
+.way .ideal { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+.way .ideal b { font: 500 11.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--text); display: block; margin-bottom: 8px; }
+.ways-note { margin-top: 24px; color: var(--muted); font-size: 17px; }
+
+/* Proceso (pasos numerados, porque aquí el orden sí importa) */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: 52px; list-style: none; padding: 0; counter-reset: s; }
+.steps li { padding-top: 22px; border-top: 3px solid var(--line); position: relative; }
+.steps li::before { counter-increment: s; content: "0" counter(s); font: 500 13px/1 var(--mono); color: var(--accent); display: block; margin-bottom: 14px; }  /* el número lo pone el CSS solo */
+.steps li:first-child { border-top-color: var(--brand); }
+.steps h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+.steps p { color: var(--muted); font-size: 16px; }
+
+/* Compromisos */
+.promises { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 56px; margin-top: 52px; list-style: none; padding: 0; }
+.promises li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 16px; padding-block: 20px; border-bottom: 1px solid var(--line); }
+.promises svg { width: 26px; height: 26px; margin-top: 2px; }
+.promises strong { display: block; font: 700 18px/1.3 var(--display); margin-bottom: 4px; }
+.promises span { color: var(--muted); font-size: 16px; }
+
+/* Preguntas frecuentes (desplegables) */
+.faq { margin-top: 52px; border-top: 1px solid var(--line); max-width: 860px; }
+details { border-bottom: 1px solid var(--line); padding-block: 22px; }
+summary { cursor: pointer; font: 700 19px/1.4 var(--display); list-style: none; display: flex; justify-content: space-between; gap: 20px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font: 500 26px/1 var(--mono); color: var(--accent); flex: none; }
+details[open] summary::after { content: "\2013"; }
+details p { color: var(--muted); margin-top: 12px; max-width: 46em; }
+
+/* Quién está detrás */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 48px; align-items: center; }
+.photo { width: min(100%, 300px); height: auto; border-radius: 28px; display: block; }.about h2 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 800; margin-block: 16px 20px; }
+.about p { color: var(--muted); font-size: 18px; max-width: 36em; }
+.about p + p { margin-top: 14px; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.ph { font: 500 14px/1 var(--mono); color: var(--muted); padding: 9px 13px; border-radius: 999px; border: 1.5px dashed var(--muted); }  /* marcador "rellena esto" */
+
+/* Contacto */
+.cta { margin-block: 20px 90px; border: 0; padding: 56px clamp(24px, 5vw, 64px); border-radius: 32px; background: color-mix(in srgb, var(--brand) 16%, var(--surface)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand) 40%, transparent); display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .9fr); gap: 40px; align-items: center; }
+.cta h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; }
+.cta p { color: var(--muted); margin-top: 14px; font-size: 18px; }
+.note { font-size: 14px; color: var(--muted); margin-top: 12px; }
+.form { display: grid; gap: 14px; }
+.form label { display: grid; gap: 7px; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.form input, .form textarea { width: 100%; font: 400 16px/1.5 var(--body); letter-spacing: 0; text-transform: none; color: var(--text); background: var(--bg); border: 0; border-radius: 14px; padding: 14px 16px; box-shadow: inset 0 0 0 1px var(--line); }
+.form textarea { min-height: 110px; resize: vertical; }
+.form input:focus, .form textarea:focus { outline: none; box-shadow: inset 0 0 0 2px var(--accent); }
+.form .btn { justify-self: start; }
+.or { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 22px; padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--brand) 30%, transparent); }
+.or .lbl { font-size: 14px; color: var(--muted); width: 100%; }
+.mailbox { font: 500 15px/1 var(--mono); padding: 12px 14px; border-radius: 12px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); user-select: all; overflow-wrap: anywhere; }
+
+/* Pie de página */
+footer { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-between; padding-block: 38px 28px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+footer .logo { height: 26px; }
+.legal { width: 100%; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 14px; }
+.legal a {text-decoration: none;}
+
+/* --- 6. SELECTOR DE COLORES (solo para probar; se quita en la versión final) --- */
+.picker { position: fixed; z-index: 20; left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); margin-inline: auto; width: fit-content; max-width: 100%; display: flex; align-items: center; gap: 14px; padding: 10px 14px; border-radius: 22px; background: var(--surface); box-shadow: 0 10px 40px rgba(0,0,0,.28), inset 0 0 0 1px var(--line); overflow-x: auto; }
+.picker .eyebrow { white-space: nowrap; }
+.picker .group { display: flex; gap: 8px; }
+.picker .sep { width: 1px; align-self: stretch; background: var(--line); flex: none; }
+.pal, .mode { font: 600 13px/1 var(--body); color: var(--text); background: transparent; border: 0; cursor: pointer; border-radius: 14px; padding: 8px 10px; display: flex; align-items: center; gap: 8px; white-space: nowrap; box-shadow: inset 0 0 0 1.5px transparent; }
+.pal:hover, .mode:hover { background: var(--line); }
+.pal[aria-pressed="true"], .mode[aria-pressed="true"] { box-shadow: inset 0 0 0 1.5px var(--text); }
+.dot { width: 22px; height: 22px; border-radius: 50%; flex: none; box-shadow: inset 0 0 0 1px rgba(128,128,128,.4); }
+
+/* --- 7. ADAPTACIÓN A PANTALLAS PEQUEÑAS (aquí están los @media) ---
+   Todo lo de dentro solo se aplica si la pantalla mide menos de 900px
+   (primer bloque) o menos de 520px (segundo bloque). Lo que hacen,
+   sobre todo, es pasar las columnas a una sola columna apilada. */
+@media (max-width: 900px) {
+  .hero, .sec-head, .row, .about, .cta { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .hero { padding-block: 40px 64px; }
+  .hero-art { order: 2; }
+  .sec-head p { padding-top: 0; }
+  .steps, .points { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flow { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .flow li:not(:last-child)::after { content: "\2193"; right: auto; left: 28px; top: auto; bottom: -34px; transform: none; }
+  .ways, .promises { grid-template-columns: minmax(0, 1fr); }
+  .photo { width: 220px; }
+  section { padding-block: 60px; }
+  nav a.link { display: none; }
+}
+  
+@media (max-width: 520px) {
+  .steps, .points { grid-template-columns: minmax(0, 1fr); }
+  .way { padding: 26px; }
+  .pal span.n { display: none; }
+  .picker .eyebrow { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }  /* respeta a quien prefiere sin animaciones */
