@@ -110,7 +110,7 @@
   --bg: #F5F5F0;
   --surface: #FFFFFF;
   --text: #2F4A50;
-  --muted: #5E7378;
+  --muted: #435A60;
   --line: rgba(47,74,80,.15);
   --brand: #F59E0B;
   --accent: #0F4C5C;
@@ -148,7 +148,7 @@ html { scroll-behavior: smooth; overflow-x: hidden; background: var(--bg); scrol
 body { margin: 0; background: transparent; color: var(--text); font: 400 17px/1.6 var(--body); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 110px; }
 body { position: relative; }
 .bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-.bg svg { position: absolute; top: -80px; left: -80px; width: calc(100% + 160px); height: calc(100% + 160px); filter: blur(50px); }
+.bg svg { position: absolute; top: -80px; left: -80px; width: calc(100% + 160px); height: calc(100% + 160px); filter: blur(50px);}
 .wrap { max-width: 1120px; margin-inline: auto; }   /* contenedor centrado de ancho máximo */
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
@@ -275,6 +275,7 @@ details p { color: var(--muted); margin-top: 12px; max-width: 46em; }
 .cta h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; }
 .cta p { color: var(--muted); margin-top: 14px; font-size: 18px; }
 .note { font-size: 14px; color: var(--muted); margin-top: 12px; }
+.note.small { font-size: 12px; opacity: .85; }
 .form { display: grid; gap: 14px; }
 .form label { display: grid; gap: 7px; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .form input, .form textarea { width: 100%; font: 400 16px/1.5 var(--body); letter-spacing: 0; text-transform: none; color: var(--text); background: var(--bg); border: 0; border-radius: 14px; padding: 14px 16px; box-shadow: inset 0 0 0 1px var(--line); }
@@ -326,3 +327,10 @@ footer .logo { height: 26px; }
   .picker .eyebrow { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }  /* respeta a quien prefiere sin animaciones */
+body { min-height: 100vh; }
+
+.doc { max-width: 760px; padding-block: 56px 72px; }
+.doc h1 { font-size: clamp(32px, 5vw, 48px); font-weight: 800; margin-bottom: 40px; }
+.doc h2 { font-size: 22px; font-weight: 700; margin: 44px 0 14px; }
+.doc p, .doc li { color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+.doc a { color: var(--accent); }
